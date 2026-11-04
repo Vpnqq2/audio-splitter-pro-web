@@ -60,8 +60,9 @@ async function init({ gpu, threads, safe }) {
   if (!ortOk) throw new Error("Could not load the AI runtime. Check your internet connection and reload the page.");
   let bytes = await getModelBytes();
   post({ type: "status", text: "Starting the AI engine..." });
+  // light mode keeps some optimisation and threads: "disabled" made splitting many times slower
   const opts = safe
-    ? { executionProviders: ["wasm"], graphOptimizationLevel: "disabled", enableCpuMemArena: false, enableMemPattern: false }
+    ? { executionProviders: ["wasm"], graphOptimizationLevel: "basic", enableCpuMemArena: false, enableMemPattern: false }
     : { executionProviders: ["wasm"], graphOptimizationLevel: "all" };
   ort.env.wasm.numThreads = Math.max(1, threads | 0);
   let usedGpu = false;
@@ -76,7 +77,7 @@ async function init({ gpu, threads, safe }) {
     catch (err) { const e = new Error("start: " + String((err && err.message) || err)); e.retry = true; throw e; }
   }
   bytes = null;
-  post({ type: "ready", gpu: usedGpu });
+  post({ type: "ready", gpu: usedGpu, threads: usedGpu ? 0 : ort.env.wasm.numThreads, isolated: !!self.crossOriginIsolated, safe: !!safe });
 }
 
 async function run({ left, right, stems, div }) {
