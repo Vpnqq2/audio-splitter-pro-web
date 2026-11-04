@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Free AI Stem Splitter Online | Separate Vocals, Drums &amp; Bass — AudioSplitAI</title>
+<meta name="description" content="Split songs into vocals, drums, bass and other stems with AudioSplitAI, a free online AI audio splitter. Create karaoke tracks and isolate instruments directly in your browser.">
+<link rel="canonical" href="https://audiosplitai.si/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#090D0B">
+<meta property="og:site_name" content="AudioSplitAI"><meta property="og:type" content="website"><meta property="og:locale" content="en_US">
+<meta property="og:title" content="Free AI Stem Splitter Online | Separate Vocals, Drums &amp; Bass — AudioSplitAI"><meta property="og:description" content="Split songs into vocals, drums, bass and other stems with AudioSplitAI, a free online AI audio splitter. Create karaoke tracks and isolate instruments directly in your browser."><meta property="og:url" content="https://audiosplitai.si/">
+<meta property="og:image" content="https://audiosplitai.si/og-image.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="AudioSplitAI: split music into vocals, drums, bass and other stems">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Free AI Stem Splitter Online | Separate Vocals, Drums &amp; Bass — AudioSplitAI"><meta name="twitter:description" content="Split songs into vocals, drums, bass and other stems with AudioSplitAI, a free online AI audio splitter. Create karaoke tracks and isolate instruments directly in your browser."><meta name="twitter:image" content="https://audiosplitai.si/og-image.png">
+<link rel="icon" href="icon.svg" type="image/svg+xml"><link rel="icon" href="icon-192.png" sizes="192x192" type="image/png"><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="style.css">
+<script src="coi-serviceworker.js"></script>
+</head><body class="site home" data-noads><a class="skip" href="#main">Skip to content</a>
+<header class="sh"><div class="sh-in">
+<a class="brand" href="./" aria-label="AudioSplitAI home"><img src="icon.svg" alt="AudioSplitAI logo" width="28" height="28"><span>Audio<b>Split</b>AI</span></a>
+<nav id="nav" aria-label="Main"><a href="./" aria-current="page">Home</a><a href="./#how">How It Works</a><a href="guides.html">Guides</a><a href="./#faq">FAQ</a><a href="contact.html">Contact</a></nav>
+<a class="btn primary sm" href="./#tool">Start Splitting</a>
+<button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="nav"><i></i><i></i><i></i></button>
+</div></header>
+<main id="main">
+<section class="hero"><div class="wrap">
+  <p class="eyebrow">Free AI audio splitter</p>
+  <h1>Split Music Into Vocals, Drums, Bass &amp; More with AI</h1>
+  <p class="sub">Separate any song into individual audio stems with our free online AI stem splitter. Create karaoke tracks, isolate vocals, and extract instrumentals directly in your browser.</p>
+  <div class="cta-row"><a class="btn primary big" href="#tool">Start Splitting</a><a class="btn outline big" href="#how">How It Works</a></div>
+  <ul class="benefits"><li>Free Online Audio Separation</li><li>No Software Installation</li><li>Browser-Based Processing</li><li>Private Audio Processing</li></ul>
+  <div class="wave" id="hero-wave" aria-hidden="true"></div>
+</div></section>
+
+<section class="sec" id="tool" aria-labelledby="tool-h"><div class="wrap narrow">
+  <h2 id="tool-h">AI Stem Splitter</h2>
+  <p class="sec-sub">Choose a song, pick the stems you need, then preview and download them.</p>
+  <div class="tool-card" id="tool-box">
+  <!-- HOME / UPLOAD -->
+  <section class="screen" id="s-home" aria-label="Choose a song">
+    <div class="drop" id="dropzone">
+      <span class="drop-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4m0 0-4 4m4-4 4 4M4 20h16"/></svg></span>
+      <h3>Upload your audio</h3>
+      <label class="btn primary big" id="pick-btn">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3z"/></svg>
+        Select a song
+        <input type="file" id="file" accept="audio/*,.mp3,.m4a,.wav,.flac,.ogg,.aac" aria-label="Select an audio file">
+      </label>
+      <p class="hint" id="drop-hint">or drop an audio file here</p>
+      <p class="formats">MP3, WAV, M4A, FLAC, OGG and other formats your browser can play</p>
+    </div>
+    <ul class="stem-chips" aria-label="Stems you can create"><li style="--c:#00C78A"><i></i><b>Vocals</b><span>Lead and backing voices</span></li><li style="--c:#2BB5FF"><i></i><b>Drums</b><span>Kick, snare, cymbals</span></li><li style="--c:#FF9F1C"><i></i><b>Bass</b><span>Bass guitar or synth bass</span></li><li style="--c:#C04CFF"><i></i><b>Other</b><span>Guitar, keys, strings</span></li></ul>
+    <p class="note" id="iso-note" hidden>Tip: reload this page once if splitting feels slow, so the browser can use more CPU threads.</p>
+    <p class="small muted center-t">The AI engine (about 165 MB) downloads the first time and is then kept on your device. Your music never leaves it.</p>
+  </section>
+
+  <!-- PICK TRACKS -->
+  <section class="screen" id="s-pick" hidden aria-label="Choose tracks">
+    <header class="bar"><button class="icon" id="pick-back" aria-label="Back">&#8592;</button><h3>Split Audio</h3></header>
+    <div class="song">
+      <div class="disc" aria-hidden="true">&#9835;</div>
+      <div class="grow"><div class="song-name" id="pick-name">song</div><div class="muted" id="pick-info">Reading file...</div></div>
+    </div>
+    <div class="label" id="what">WHAT DO YOU WANT?</div>
+    <div class="chips" id="chips" role="group" aria-labelledby="what">
+      <button class="chip on" data-set="all">All tracks</button>
+      <button class="chip" data-set="vocals">Vocals only</button>
+      <button class="chip" data-set="novocals">No vocals</button>
+    </div>
+    <div class="tiles" id="tiles"></div>
+    <p class="muted small" id="pick-note">Only the tracks you choose are created. The AI always works on the whole song.</p>
+    <details class="adv">
+      <summary>Options</summary>
+      <label class="row">Quality
+        <select id="quality"><option value="4">High (slowest)</option><option value="10" selected>Balanced</option><option value="32">Fast</option></select>
+      </label>
+      <label class="row" id="gpu-row" hidden>Use the graphics card (experimental)
+        <input type="checkbox" id="gpu">
+      </label>
+    </details>
+    <p class="warn" id="pick-warn" hidden></p>
+    <button class="btn primary wide" id="split" disabled>Split all 4 tracks</button>
+  </section>
+
+  <!-- PROCESSING -->
+  <section class="screen center" id="s-proc" hidden aria-live="polite" aria-label="Processing">
+    <div class="ring"><svg viewBox="0 0 120 120" aria-hidden="true"><circle class="track" cx="60" cy="60" r="52"/><circle class="arc" id="ring-arc" cx="60" cy="60" r="52"/></svg>
+      <div class="pct" id="proc-pct">0%</div></div>
+    <h3 id="proc-title">Processing your audio...</h3>
+    <p class="muted" id="proc-status">Starting...</p>
+    <div class="bar-wrap" id="dl-wrap" hidden><div class="bar-fill" id="dl-fill"></div></div>
+    <p class="muted small" id="proc-eta"></p>
+    <p class="muted small">Keep this tab open. Splitting a song takes a few minutes.</p>
+    <button class="btn outline" id="cancel">Cancel</button>
+    <a class="miniad" href="https://play.google.com/store/apps/details?id=com.black.tradictuin&referrer=utm_source%3Dweb" target="_blank" rel="noopener"><img src="icon.svg" alt="" width="38" height="38"><span><b>Waiting? Try the Android app</b><small>MP3 export, voice recording and a song library</small></span><em aria-hidden="true">&#8250;</em></a>
+  </section>
+
+  <!-- MIXER -->
+  <section class="screen" id="s-mix" hidden aria-label="Mixer">
+    <header class="bar">
+      <button class="icon" id="mix-back" aria-label="Back">&#8592;</button>
+      <h3 class="grow">Preview and download</h3>
+      <button class="btn pill" id="open-export">&#11015; Export</button>
+    </header>
+    <div class="songrow"><div class="song-name grow" id="mix-name">song</div>
+      <button class="btn pill karaoke" id="karaoke" hidden><span id="karaoke-ico" aria-hidden="true">&#127908;</span> Karaoke</button></div>
+    <div id="strips" class="strips"></div>
+    <div class="transport">
+      <div class="seekrow"><span id="t-pos">0:00</span><input type="range" id="seek" min="0" max="1000" value="0" aria-label="Seek"><span id="t-dur">0:00</span></div>
+      <div class="controls">
+        <button class="icon" id="loop" aria-label="Loop" title="Loop">&#8635;</button>
+        <button class="icon" id="back5" aria-label="Back 5 seconds" title="Back 5 seconds">&#9194;</button>
+        <button class="play" id="play" aria-label="Play">&#9654;</button>
+        <button class="icon" id="fwd5" aria-label="Forward 5 seconds" title="Forward 5 seconds">&#9193;</button>
+        <span class="ghost"></span>
+      </div>
+    </div>
+  </section>
+</div>
+<noscript><p class="note">The stem splitter needs JavaScript. Please turn it on in your browser settings.</p></noscript>
+</div></section>
+
+<section class="sec alt" aria-labelledby="feat-h"><div class="wrap">
+  <h2 id="feat-h">What AudioSplitAI does</h2>
+  <p class="sec-sub">A free online stem splitter and karaoke maker that works in the browser.</p>
+  <div class="feats"><article class="feat"><span class="fi"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h3l2-6 4 12 3-9 2 3h4"/></svg></span><h3>AI Stem Separation</h3><p>A Hybrid Transformer Demucs model splits a finished song into four stems: vocals, drums, bass and other. Choose which stems to create.</p></article><article class="feat"><span class="fi"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></span><h3>Online Karaoke Maker</h3><p>Press Karaoke in the mixer to mute the lead vocal and keep the backing music, then export it as a WAV file.</p></article><article class="feat"><span class="fi"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 13 9 5 9-5"/></svg></span><h3>Individual Instrument Extraction</h3><p>Solo or mute the drums, the bass or the rest of the band to practise, study or collect samples you have the right to use.</p></article><article class="feat"><span class="fi"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><h3>Private Browser-Based Processing</h3><p>The AI runs inside your browser. Your audio file is not uploaded, and nothing needs to be installed.</p></article></div>
+</div></section>
+
+<section class="sec" id="how" aria-labelledby="how-h"><div class="wrap narrow">
+  <h2 id="how-h">How It Works</h2>
+  <p class="sec-sub">Three steps from a finished song to separate stems.</p>
+  <ol class="steps"><li><span class="si"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4m0 0-4 4m4-4 4 4M4 20h16"/></svg></span><div><h3>Upload Your Audio</h3><p>Choose a song or drop a file. MP3, WAV, M4A, FLAC and OGG are common formats that work in most browsers.</p></div></li><li><span class="si"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg></span><div><h3>AI Separates the Stems</h3><p>Pick the stems you want and start. The model works on your device, and a progress ring shows how far it is.</p></div></li><li><span class="si"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12m0 0-4-4m4 4 4-4M4 20h16"/></svg></span><div><h3>Preview and Download Your Tracks</h3><p>Play the stems together, mute or solo each one, then download WAV files, or one ZIP for several tracks.</p></div></li></ol>
+</div></section>
+
+<section class="sec alt" aria-labelledby="use-h"><div class="wrap narrow">
+  <h2 id="use-h">What you can use stems for</h2>
+  <ul class="uses"><li><a href="guide-make-karaoke-track.html">Create karaoke instrumentals</a></li><li><a href="guide-remove-vocals.html">Extract vocals for remixes</a></li><li><a href="guide-isolate-drums-bass.html">Isolate drums and bass</a></li><li><a href="guide-better-separation-tips.html">Practice instruments</a></li><li><a href="guide-what-are-stems.html">Create music samples</a></li></ul>
+  <p class="muted small">Use only music you own or have permission to use.</p>
+</div></section>
+
+<section class="sec" aria-labelledby="gd-h"><div class="wrap">
+  <h2 id="gd-h">Guides</h2>
+  <p class="sec-sub">Learn how to remove vocals, make karaoke tracks and get cleaner results.</p>
+  <div class="cards"><a class="card" href="guide-remove-vocals.html"><b>How to remove vocals from a song</b><span>Learn how to remove vocals from a song with a free AI vocal remover.</span><em>3 min read</em></a><a class="card" href="guide-make-karaoke-track.html"><b>How to make a karaoke track from any song</b><span>Make a karaoke track from any song with a free online karaoke maker.</span><em>2 min read</em></a><a class="card" href="guide-what-are-stems.html"><b>What are stems? A simple explanation</b><span>What are stems? Learn what music stems are, the four common stems (vocals, drums, bass, other) and how AI can split a finished song into stems.</span><em>2 min read</em></a><a class="card" href="guide-how-ai-separation-works.html"><b>How AI music source separation works</b><span>A plain-language explanation of how AI music source separation works, what Demucs-style models learn, and why the splitting runs in your browser.</span><em>3 min read</em></a><a class="card" href="guide-better-separation-tips.html"><b>10 tips for cleaner stem separation</b><span>Ten practical tips for cleaner stem separation: choose a better source file, pick the right quality setting and fix small leftovers in the mixer.</span><em>2 min read</em></a><a class="card" href="guide-isolate-drums-bass.html"><b>How to Separate Drums and Isolate Bass from a Song</b><span>How to separate drums from a song and isolate the bass line with a free AI stem splitter.</span><em>3 min read</em></a></div>
+  <p class="more"><a href="guides.html">All guides &rsaquo;</a></p>
+</div></section>
+
+<section class="sec alt" aria-labelledby="app-h"><div class="wrap narrow">
+  <div class="promo"><div class="promo-glow" aria-hidden="true"></div>
+    <span class="tag">ANDROID APP</span>
+    <h2 id="app-h">Take it everywhere with the app</h2>
+    <p>Audio Splitter Pro is our Android app. It runs the AI on your phone, works without internet once installed and adds more features.</p>
+    <ul class="ticks"><li>Export as <b>MP3</b>, M4A or WAV</li><li><b>Record your voice</b> over the music, then export</li><li>Your own <b>library</b> of split songs</li></ul>
+    <a class="gplay" href="https://play.google.com/store/apps/details?id=com.black.tradictuin&referrer=utm_source%3Dweb" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="#00C78A" d="M4 2.6v18.8c0 .5.5.8.9.5l15.3-9.4c.4-.2.4-.8 0-1L4.9 2.1c-.4-.3-.9 0-.9.5z"/></svg><span><small>GET IT ON</small><b>Google Play</b></span></a>
+  </div>
+</div></section>
+
+<section class="sec" id="faq" aria-labelledby="faq-h"><div class="wrap narrow">
+  <h2 id="faq-h">Frequently asked questions</h2>
+  <details class="faq"><summary>Is AudioSplitAI free?</summary><p>Yes. You can split songs and download the stems for free. There is nothing to install and no account to create.</p></details><details class="faq"><summary>Is my music uploaded to a server?</summary><p>No. The AI model is downloaded to your browser and the separation runs on your own device. Your audio file is not sent to us or to any other server.</p></details><details class="faq"><summary>Which audio files can I use?</summary><p>Any audio file your browser can decode. This usually includes MP3, WAV, M4A/AAC, FLAC and OGG. If a file cannot be read, try converting it to MP3 or WAV.</p></details><details class="faq"><summary>Why does the first run take longer?</summary><p>The AI model (about 165 MB) is downloaded the first time and stored in your browser. Next time it loads from your device.</p></details><details class="faq"><summary>How long does splitting take?</summary><p>It depends on the length of the song, the quality setting and your device. A computer is usually faster than a phone. Keep the tab open while it works.</p></details><details class="faq"><summary>Why did the page stop or reload on my phone?</summary><p>The AI needs a lot of memory. Phones have less than computers, so long songs can fail. Close other tabs, try a shorter song, or use a computer.</p></details><details class="faq"><summary>Can I make a karaoke track?</summary><p>Yes. Split the song, press Karaoke in the mixer to mute the vocals, and export the Full mix as a WAV file.</p></details><details class="faq"><summary>Can I use the results commercially?</summary><p>Only if you have the rights to the original music. AudioSplitAI is a tool, and you are responsible for how you use the files you export.</p></details>
+</div></section>
+</main><footer class="sf"><div class="sf-in">
+<div class="sf-about"><a class="brand" href="./"><img src="icon.svg" alt="AudioSplitAI logo" width="28" height="28"><span>Audio<b>Split</b>AI</span></a>
+<p>AudioSplitAI is a free online AI stem splitter. It separates songs into vocals, drums, bass and other stems and runs in your browser, so your audio is not uploaded.</p></div>
+<nav aria-label="Footer"><b>Site</b><a href="./">Home</a><a href="guides.html">Guides</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav>
+<nav aria-label="Legal"><b>Legal</b><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a><a href="#" id="ad-choices" hidden>Ad choices</a></nav>
+</div><p class="copy">&copy; 2026 AudioSplitAI. Use only music you own or have permission to use.</p></footer>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://audiosplitai.si/#website","url":"https://audiosplitai.si/","name":"AudioSplitAI","description":"Split songs into vocals, drums, bass and other stems with AudioSplitAI, a free online AI audio splitter. Create karaoke tracks and isolate instruments directly in your browser.","inLanguage":"en","publisher":{"@id":"https://audiosplitai.si/#org"}},{"@type":"Organization","@id":"https://audiosplitai.si/#org","name":"AudioSplitAI","url":"https://audiosplitai.si/","logo":{"@type":"ImageObject","url":"https://audiosplitai.si/icon-512.png","width":512,"height":512},"email":"lousdias0@gmail.com"},{"@type":"WebApplication","@id":"https://audiosplitai.si/#app","name":"AudioSplitAI","url":"https://audiosplitai.si/","description":"Free online AI stem splitter. Separates songs into vocals, drums, bass and other stems in your browser.","applicationCategory":"MultimediaApplication","operatingSystem":"Any modern web browser","browserRequirements":"Requires JavaScript and WebAssembly","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"inLanguage":"en","featureList":["Split songs into vocals, drums, bass and other stems","Karaoke mode","Mixer with volume, mute and solo","Download WAV files or a ZIP"],"publisher":{"@id":"https://audiosplitai.si/#org"}}]}</script>
+<script src="app.js" defer></script><script src="site.js" defer></script>
+<dialog id="exp" aria-labelledby="exp-h">
+  <h3 id="exp-h">Export</h3>
+  <div class="label">WHAT TO EXPORT</div>
+  <div id="exp-list" class="exp-list"></div>
+  <p class="muted small">WAV, lossless. Several files are downloaded together as one ZIP.</p>
+  <p class="muted small" id="exp-msg" role="status"></p>
+  <a class="miniad" href="https://play.google.com/store/apps/details?id=com.black.tradictuin&referrer=utm_source%3Dweb" target="_blank" rel="noopener"><img src="icon.svg" alt="" width="38" height="38"><span><b>Need MP3 or M4A?</b><small>Get the Android app on Google Play</small></span><em aria-hidden="true">&#8250;</em></a>
+  <div class="dlg-actions"><button class="btn outline" id="exp-close">Close</button><button class="btn primary" id="exp-go">Download</button></div>
+</dialog>
+<div id="toast" class="toast" hidden role="status"></div>
+</body></html>
