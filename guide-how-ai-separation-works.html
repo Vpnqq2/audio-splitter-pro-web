@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>How AI Audio Separation Works: Stem Splitting Explained</title>
+<meta name="description" content="A plain-language explanation of how AI music source separation works, what Demucs-style models learn, and why the splitting runs in your browser.">
+<link rel="canonical" href="https://audiosplitai.si/guide-how-ai-separation-works.html">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#090D0B">
+<meta property="og:site_name" content="AudioSplitAI"><meta property="og:type" content="article"><meta property="og:locale" content="en_US">
+<meta property="og:title" content="How AI Audio Separation Works: Stem Splitting Explained"><meta property="og:description" content="A plain-language explanation of how AI music source separation works, what Demucs-style models learn, and why the splitting runs in your browser."><meta property="og:url" content="https://audiosplitai.si/guide-how-ai-separation-works.html">
+<meta property="og:image" content="https://audiosplitai.si/og-image.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="AudioSplitAI: split music into vocals, drums, bass and other stems">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="How AI Audio Separation Works: Stem Splitting Explained"><meta name="twitter:description" content="A plain-language explanation of how AI music source separation works, what Demucs-style models learn, and why the splitting runs in your browser."><meta name="twitter:image" content="https://audiosplitai.si/og-image.png">
+<link rel="icon" href="icon.svg" type="image/svg+xml"><link rel="icon" href="icon-192.png" sizes="192x192" type="image/png"><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="style.css">
+</head><body class="site"><a class="skip" href="#main">Skip to content</a>
+<header class="sh"><div class="sh-in">
+<a class="brand" href="./" aria-label="AudioSplitAI home"><img src="icon.svg" alt="AudioSplitAI logo" width="28" height="28"><span>Audio<b>Split</b>AI</span></a>
+<nav id="nav" aria-label="Main"><a href="./">Home</a><a href="./#how">How It Works</a><a href="guides.html" aria-current="page">Guides</a><a href="./#faq">FAQ</a><a href="contact.html">Contact</a></nav>
+<a class="btn primary sm" href="./#tool">Start Splitting</a>
+<button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="nav"><i></i><i></i><i></i></button>
+</div></header>
+<main id="main" class="doc"><nav class="crumb" aria-label="Breadcrumb"><a href="./">Home</a> <span aria-hidden="true">&rsaquo;</span> <a href="guides.html">Guides</a></nav>
+<article><h1>How AI music source separation works</h1><p class="meta">3 min read &middot; Updated <time datetime="2026-11-04">November 4, 2026</time></p>
+<div class="quick"><b>Quick answer</b><p>A neural network trained on many songs learns what voices, drums and bass look like in sound, then estimates each one as its own track. <a href="./#tool">Open the splitter</a></p></div>
+<p class="lead">Taking a finished song and pulling it back into separate instruments sounds almost impossible. After all, the sounds have been added together. Yet modern AI models do it surprisingly well. Here is the idea without the heavy maths.</p>
+<h2>The problem</h2>
+<p>A stereo song is a single stream of numbers: the air pressure for the left and right speakers, 44,100 times per second. Every instrument has been added into those numbers. There is no mathematical way to subtract one sound exactly, because we do not know what it looked like on its own.</p>
+<h2>The idea: learn what instruments look like</h2>
+<p>Researchers train a neural network on a large collection of songs for which the separate stems are known. The model is shown the mix and asked to predict the stems. When it is wrong, its internal settings are nudged slightly. After many repetitions it learns the typical patterns of a voice, a kick drum or a bass guitar, and how they overlap.</p>
+<h2>Two ways of looking at sound</h2>
+<p>Some models look at the <b>waveform</b>, the raw signal over time. Others look at the <b>spectrogram</b>, a picture of which frequencies are present at each moment. The model used here, a Hybrid Transformer Demucs, uses both views and a transformer to compare different parts of the song with each other. A drum pattern that repeats, for example, helps the model recognise the drums every time they appear.</p>
+<h2>Why the song is processed in pieces</h2>
+<p>The network works on a window of about eight seconds. A long song is cut into overlapping windows, each is separated, and the results are blended together with a gradual crossfade so you never hear a seam. More overlap means smoother joins and a slower job. This is what the quality setting controls.</p>
+<h2>Why it runs in your browser</h2>
+<p>The model is converted to a portable format called ONNX and executed by a runtime compiled to WebAssembly. That lets the browser do the heavy calculation on your own processor, so your music never has to leave your device. The first visit downloads the model once and keeps it in browser storage.</p>
+<h2>Limits you should know about</h2>
+<ul><li>The result is an estimate, not the original studio stems.</li>
+<li>Very similar sounds, like a lead vocal and a harmony singing the same notes, can be confused.</li>
+<li>Phones have less memory and speed than computers, so long songs take longer.</li></ul>
+<h2>Where the technology is going</h2>
+<p>Separation keeps improving, with models that split more instruments and make fewer artefacts. Running such models locally, privately and for free is becoming normal, and this site is one small example.</p></article>
+<section aria-labelledby="rel"><h2 id="rel">Related guides</h2><div class="cards"><a class="card" href="guide-what-are-stems.html"><b>What are stems? A simple explanation</b><span>What are stems? Learn what music stems are, the four common stems (vocals, drums, bass, other) and how AI can split a finished song into stems.</span></a><a class="card" href="guide-better-separation-tips.html"><b>10 tips for cleaner stem separation</b><span>Ten practical tips for cleaner stem separation: choose a better source file, pick the right quality setting and fix small leftovers in the mixer.</span></a><a class="card" href="guide-remove-vocals.html"><b>How to remove vocals from a song</b><span>Learn how to remove vocals from a song with a free AI vocal remover.</span></a></div></section><aside class="cta"><div><b>Try the free AI stem splitter</b><p>Split a song into vocals, drums, bass and other instruments, directly in your browser.</p></div><a class="btn primary" href="./#tool">Start Splitting</a></aside>
+<aside class="cta app"><div><b>Prefer your phone?</b><p>The Audio Splitter Pro Android app adds MP3 export, voice recording over the music and a library of your songs.</p></div><a class="gplay" href="https://play.google.com/store/apps/details?id=com.black.tradictuin&referrer=utm_source%3Dweb" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="#00C78A" d="M4 2.6v18.8c0 .5.5.8.9.5l15.3-9.4c.4-.2.4-.8 0-1L4.9 2.1c-.4-.3-.9 0-.9.5z"/></svg><span><small>GET IT ON</small><b>Google Play</b></span></a></aside></main><footer class="sf"><div class="sf-in">
+<div class="sf-about"><a class="brand" href="./"><img src="icon.svg" alt="AudioSplitAI logo" width="28" height="28"><span>Audio<b>Split</b>AI</span></a>
+<p>AudioSplitAI is a free online AI stem splitter. It separates songs into vocals, drums, bass and other stems and runs in your browser, so your audio is not uploaded.</p></div>
+<nav aria-label="Footer"><b>Site</b><a href="./">Home</a><a href="guides.html">Guides</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav>
+<nav aria-label="Legal"><b>Legal</b><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a><a href="#" id="ad-choices" hidden>Ad choices</a></nav>
+</div><p class="copy">&copy; 2026 AudioSplitAI. Use only music you own or have permission to use.</p></footer>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://audiosplitai.si/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://audiosplitai.si/guides.html"},{"@type":"ListItem","position":3,"name":"How AI music source separation works","item":"https://audiosplitai.si/guide-how-ai-separation-works.html"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How AI music source separation works","description":"A plain-language explanation of how AI music source separation works, what Demucs-style models learn, and why the splitting runs in your browser.","datePublished":"2026-11-04","dateModified":"2026-11-04","image":"https://audiosplitai.si/og-image.png","inLanguage":"en","mainEntityOfPage":"https://audiosplitai.si/guide-how-ai-separation-works.html","author":{"@type":"Organization","name":"AudioSplitAI","url":"https://audiosplitai.si/"},"publisher":{"@type":"Organization","@id":"https://audiosplitai.si/#org","name":"AudioSplitAI","url":"https://audiosplitai.si/","logo":{"@type":"ImageObject","url":"https://audiosplitai.si/icon-512.png","width":512,"height":512},"email":"lousdias0@gmail.com"}}</script>
+<script src="ads-config.js" defer></script><script src="site.js" defer></script></body></html>
