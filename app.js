@@ -114,7 +114,12 @@ function setRing(p) {
   $("#ring-arc").style.strokeDashoffset = String(326.7 * (1 - p));
   $("#proc-pct").textContent = Math.round(p * 100) + "%";
 }
-function stopWorker() { if (S.worker) { S.worker.terminate(); S.worker = null; } }
+function stopWorker() { if (S.worker) { S.worker.terminate(); S.worker = null; } releaseAwake(); }
+// keep the screen on while splitting: a sleeping phone slows the page down a lot
+let wake = null;
+async function keepAwake() { try { if (navigator.wakeLock && !wake) { wake = await navigator.wakeLock.request("screen"); wake.addEventListener("release", () => { wake = null; }); } } catch (_) {} }
+function releaseAwake() { try { if (wake) wake.release(); } catch (_) {} wake = null; }
+document.addEventListener("visibilitychange", () => { if (!document.hidden && S.worker) keepAwake(); });
 
 function startSplit(safe) {
   safe = safe === true;
@@ -122,7 +127,7 @@ function startSplit(safe) {
   const stems = CH.filter((_, i) => S.picks[i]).map((c) => c.stem);
   const div = Number($("#quality").value);
   const gpu = !$("#gpu-row").hidden && $("#gpu").checked;
-  const threads = safe ? 1 : (window.crossOriginIsolated ? Math.min(4, navigator.hardwareConcurrency || 4) : 1);
+  const threads = window.crossOriginIsolated ? Math.min(safe ? 2 : 4, navigator.hardwareConcurrency || 4) : 1;
   show("proc"); setRing(0);
   $("#proc-title").textContent = safe ? "Trying a lighter mode..." : "Preparing..."; $("#proc-status").textContent = "Starting..."; $("#proc-eta").textContent = "";
   $("#dl-wrap").hidden = true;
@@ -139,7 +144,9 @@ function startSplit(safe) {
       $("#proc-title").textContent = "Downloading the AI engine";
     } else if (m.type === "ready") {
       $("#dl-wrap").hidden = true;
-      $("#proc-title").textContent = "Processing your audio..."; $("#proc-status").textContent = m.gpu ? "Using the graphics card" : "Separating the tracks";
+      $("#proc-title").textContent = "Processing your audio..."; $("#proc-status").textContent = m.gpu ? "Using the graphics card"
+        : "Separating the tracks (" + m.threads + (m.threads === 1 ? " thread" : " threads") + (m.isolated ? "" : ", reload the page once to use more") + (m.safe ? ", light mode" : "") + ")";
+      keepAwake();
       setRing(0);
       w.postMessage({ type: "run", left, right, stems, div }, [left.buffer, right.buffer]);
     } else if (m.type === "progress") {
