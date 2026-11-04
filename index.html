@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Audio Splitter Pro: AI stem splitter and vocal remover</title>
+  <meta name="description" content="Split any song into vocals, drums, bass and other instruments right in your browser. Free, private, nothing is uploaded.">
+  <meta name="theme-color" content="#050807">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css"><link rel="stylesheet" href="site.css">
+  <meta property="og:title" content="Audio Splitter Pro: AI stem splitter and vocal remover"><meta property="og:description" content="Split any song into vocals, drums, bass and other instruments right in your browser. Free and private.">
+  <script src="coi-serviceworker.js"></script>
+</head>
+<body>
+<div id="app">
+
+  <!-- ============ HOME ============ -->
+  <section class="screen" id="s-home">
+    <div class="home-top"><span class="brand"><img src="icon.svg" alt="" width="28" height="28"> Audio Splitter Pro</span><a class="getapp" href="https://play.google.com/store/apps/details?id=com.black.tradictuin&referrer=utm_source%3Dweb" target="_blank" rel="noopener">Get the app</a></div>
+    <div class="hero">
+      <div class="wave" id="hero-wave" aria-hidden="true"></div>
+      <h1>Audio <span class="g">Splitter</span> Pro</h1>
+      <p class="sub">Split any song into vocals, drums, bass and more.<br>Runs in your browser. Nothing is uploaded.</p>
+      <label class="btn primary big" id="pick-btn">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3z"/></svg>
+        Select a song
+        <input type="file" id="file" accept="audio/*,.mp3,.m4a,.wav,.flac,.ogg,.aac" hidden>
+      </label>
+      <p class="hint" id="drop-hint">or drop an audio file here</p>
+    </div>
+    <ul class="features">
+      <li><b>4 tracks</b><span>Vocals, drums, bass, other</span></li>
+      <li><b>Karaoke</b><span>Remove the vocals in one tap</span></li>
+      <li><b>Pro mixer</b><span>Volume, mute and solo for each track</span></li>
+      <li><b>Private</b><span>Your music stays on your device</span></li>
+    </ul>
+    <h2 class="sec">How it works</h2>
+    <ol class="steps">
+      <li><i>1</i><div><b>Pick a song</b><span>MP3, WAV, M4A, FLAC and more.</span></div></li>
+      <li><i>2</i><div><b>Let the AI split it</b><span>Vocals, drums, bass and other, separated on your device.</span></div></li>
+      <li><i>3</i><div><b>Mix and export</b><span>Solo, mute, make a karaoke track, download WAV.</span></div></li>
+    </ol>
+
+    <h2 class="sec">Learn more</h2>
+    <div class="learn">
+      <a class="card" href="guide-remove-vocals.html"><b>How to remove vocals from a song</b><span>What to expect from AI vocal removal and how to get a clean result.</span></a>
+      <a class="card" href="guide-make-karaoke-track.html"><b>How to make a karaoke track</b><span>Turn your favourite song into a backing track in minutes.</span></a>
+      <a class="card" href="guide-what-are-stems.html"><b>What are stems?</b><span>A simple explanation of vocals, drums, bass and other.</span></a>
+      <a class="card" href="guides.html" style="text-align:center;color:var(--green)">All guides &rsaquo;</a>
+    </div>
+
+    <section class="promo">
+      <div class="promo-glow" aria-hidden="true"></div>
+      <span class="tag">ANDROID APP</span>
+      <h2>Take it everywhere with the app</h2>
+      <p>The same AI, built for your phone. Made for phones, and it works without internet once installed.</p>
+      <ul class="ticks">
+        <li>Export as <b>MP3</b>, M4A or WAV</li>
+        <li><b>Record your voice</b> over the music, then export</li>
+        <li>Your own <b>library</b> of split songs</li>
+        <li>Color themes, dark and light mode</li>
+      </ul>
+      <a class="gplay" href="https://play.google.com/store/apps/details?id=com.black.tradictuin&referrer=utm_source%3Dweb" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="#00E676" d="M4 2.6v18.8c0 .5.5.8.9.5l15.3-9.4c.4-.2.4-.8 0-1L4.9 2.1c-.4-.3-.9 0-.9.5z"/><path fill="#00C853" d="M4 2.6 14 12 4 21.4z" opacity=".55"/></svg><span><small>GET IT ON</small><b>Google Play</b></span></a>
+    </section>
+
+    <h2 class="sec">Questions</h2>
+    <details class="faq"><summary>Is it free?</summary><p>Yes. The website is free to use.</p></details>
+    <details class="faq"><summary>Is my music uploaded?</summary><p>No. Everything runs inside your browser. Your files never leave your device.</p></details>
+    <details class="faq"><summary>Why does the first run take longer?</summary><p>The AI engine (about 165 MB) is downloaded once and then stored in your browser.</p></details>
+    <details class="faq"><summary>Is it slow on my phone?</summary><p>Browsers on phones have limited memory and speed. A computer works best here, and the Android app is made for phones.</p></details>
+
+    <p class="note" id="iso-note" hidden>Tip: reload this page once if splitting feels slow, so the browser can use more CPU threads.</p>
+    <footer class="foot">The AI engine (about 165 MB) downloads the first time and is then kept on your device.
+      <a href="guides.html">Guides</a> · <a href="about.html">About</a> · <a href="contact.html">Contact</a> · <a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a><br>Use only music you own or have permission to use.
+      <br><a href="https://play.google.com/store/apps/details?id=com.black.tradictuin&referrer=utm_source%3Dweb" target="_blank" rel="noopener">Audio Splitter Pro on Google Play</a></footer>
+  </section>
+
+  <!-- ============ PICK TRACKS ============ -->
+  <section class="screen" id="s-pick" hidden>
+    <header class="bar"><button class="icon" id="pick-back" aria-label="Back">&#8592;</button><h2>Split Audio</h2></header>
+    <div class="song">
+      <div class="disc">&#9835;</div>
+      <div class="grow"><div class="song-name" id="pick-name">song</div><div class="muted" id="pick-info">Reading file...</div></div>
+    </div>
+    <div class="label">WHAT DO YOU WANT?</div>
+    <div class="chips" id="chips">
+      <button class="chip on" data-set="all">All tracks</button>
+      <button class="chip" data-set="vocals">Vocals only</button>
+      <button class="chip" data-set="novocals">No vocals</button>
+    </div>
+    <div class="tiles" id="tiles"></div>
+    <p class="muted small" id="pick-note">Only the tracks you choose are created. The AI always works on the whole song.</p>
+    <details class="adv">
+      <summary>Options</summary>
+      <label class="row">Quality
+        <select id="quality"><option value="4">High (slowest)</option><option value="10" selected>Balanced</option><option value="32">Fast</option></select>
+      </label>
+      <label class="row" id="gpu-row" hidden>Use the graphics card (experimental)
+        <input type="checkbox" id="gpu">
+      </label>
+    </details>
+    <p class="warn" id="pick-warn" hidden></p>
+    <div class="spacer"></div>
+    <button class="btn primary wide" id="split" disabled>Split all 4 tracks</button>
+  </section>
+
+  <!-- ============ PROCESSING ============ -->
+  <section class="screen center" id="s-proc" hidden>
+    <div class="ring"><svg viewBox="0 0 120 120"><circle class="track" cx="60" cy="60" r="52"/><circle class="arc" id="ring-arc" cx="60" cy="60" r="52"/></svg>
+      <div class="pct" id="proc-pct">0%</div></div>
+    <h2 id="proc-title">Processing your audio...</h2>
+    <p class="muted" id="proc-status">Starting...</p>
+    <div class="bar-wrap" id="dl-wrap" hidden><div class="bar-fill" id="dl-fill"></div></div>
+    <p class="muted small" id="proc-eta"></p>
+    <p class="muted small">Keep this tab open. Splitting a song takes a few minutes.</p>
+    <button class="btn outline" id="cancel">Cancel</button>
+    <a class="miniad" href="https://play.google.com/store/apps/details?id=com.black.tradictuin&referrer=utm_source%3Dweb" target="_blank" rel="noopener"><img src="icon.svg" alt="" width="38" height="38"><span><b>Waiting? Get the Android app</b><small>MP3 export, voice recording and a song library</small></span><em>&#8250;</em></a>
+  </section>
+
+  <!-- ============ MIXER ============ -->
+  <section class="screen" id="s-mix" hidden>
+    <header class="bar">
+      <button class="icon" id="mix-back" aria-label="Back">&#8592;</button>
+      <h2 class="grow">Mix</h2>
+      <button class="btn pill" id="open-export">&#11015; Export</button>
+    </header>
+    <div class="songrow"><div class="song-name grow" id="mix-name">song</div>
+      <button class="btn pill karaoke" id="karaoke" hidden><span id="karaoke-ico">&#127908;</span> Karaoke</button></div>
+    <div id="strips" class="strips"></div>
+    <div class="transport">
+      <div class="seekrow"><span id="t-pos">0:00</span><input type="range" id="seek" min="0" max="1000" value="0"><span id="t-dur">0:00</span></div>
+      <div class="controls">
+        <button class="icon" id="loop" aria-label="Loop" title="Loop">&#8635;</button>
+        <button class="icon" id="back5" aria-label="Back 5 seconds">&#9194;</button>
+        <button class="play" id="play" aria-label="Play">&#9654;</button>
+        <button class="icon" id="fwd5" aria-label="Forward 5 seconds">&#9193;</button>
+        <span class="ghost"></span>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ============ EXPORT ============ -->
+<dialog id="exp">
+  <h3>Export</h3>
+  <div class="label">WHAT TO EXPORT</div>
+  <div id="exp-list" class="exp-list"></div>
+  <p class="muted small">WAV, lossless. Several files are downloaded together as one ZIP.</p>
+  <p class="muted small" id="exp-msg"></p>
+  <a class="miniad" href="https://play.google.com/store/apps/details?id=com.black.tradictuin&referrer=utm_source%3Dweb" target="_blank" rel="noopener"><img src="icon.svg" alt="" width="38" height="38"><span><b>Need MP3 or M4A?</b><small>Get the Android app on Google Play</small></span><em>&#8250;</em></a>
+  <div class="dlg-actions"><button class="btn outline" id="exp-close">Close</button><button class="btn primary" id="exp-go">Download</button></div>
+</dialog>
+
+<div id="toast" class="toast" hidden></div>
+<script src="app.js"></script>
+</body>
+</html>
