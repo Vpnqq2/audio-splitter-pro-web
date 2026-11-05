@@ -3,7 +3,8 @@
   var b = document.getElementById("burger"), n = document.getElementById("nav");
   if (b && n) {
     var set = function (o) { n.classList.toggle("open", o); b.setAttribute("aria-expanded", o ? "true" : "false"); };
-    b.addEventListener("click", function () { set(!n.classList.contains("open")); });
+    b.addEventListener("click", function (e) { e.stopPropagation(); set(!n.classList.contains("open")); });
+    document.addEventListener("click", function (e) { if (n.classList.contains("open") && !n.contains(e.target) && !b.contains(e.target)) set(false); });
     n.addEventListener("click", function (e) { if (e.target.tagName === "A") set(false); });
     document.addEventListener("keydown", function (e) { if (e.key === "Escape") set(false); });
   }
