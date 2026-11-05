@@ -291,3 +291,34 @@ dialog h3{font-size:19px;margin-bottom:2px}
 .sf{background:linear-gradient(180deg,#0a130f,#070b09)}
 body.site:not(.home){background:radial-gradient(800px 420px at 80% -60px,rgba(0,255,170,.1),transparent 60%),var(--bg)}
 @media (max-width:760px){.stems-show{grid-template-columns:1fr 1fr}.sec-title::before,.sec-title::after{max-width:40px}}
+
+/* ---- motion ---- */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.7,.2,1) var(--d,0ms),transform .8s cubic-bezier(.2,.7,.2,1) var(--d,0ms)}
+.rv.in{opacity:1;transform:none}
+@keyframes up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes floaty{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-14px) rotate(.8deg)}}
+@keyframes drift{0%,100%{transform:translateX(-1.5%) scaleY(1)}50%{transform:translateX(1.5%) scaleY(1.07)}}
+@keyframes eqp{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.07)}}
+@keyframes bar{0%,100%{transform:scaleY(.45)}50%{transform:scaleY(1.15)}}
+@keyframes glow{0%,100%{box-shadow:0 6px 24px rgba(0,199,138,.28)}50%{box-shadow:0 8px 40px rgba(0,230,150,.55)}}
+@keyframes wavep{0%,100%{transform:scaleX(1);opacity:.85}50%{transform:scaleX(1.18);opacity:1}}
+.hero .eyebrow{animation:up .7s .05s both}
+.hero h1{animation:up .8s .15s both}
+.hero .sub{animation:up .8s .28s both}
+.hero .cta-row{animation:up .8s .4s both}
+.hero .benefits li{animation:up .7s both}
+.hero .benefits li:nth-child(1){animation-delay:.55s}.hero .benefits li:nth-child(2){animation-delay:.65s}.hero .benefits li:nth-child(3){animation-delay:.75s}.hero .benefits li:nth-child(4){animation-delay:.85s}
+.hero-art{animation:fade 1s .2s both}
+.hero-art img{animation:floaty 6s ease-in-out infinite}
+.hero-bg img{animation:drift 9s ease-in-out infinite;transform-origin:center bottom}
+.hero .btn.primary{animation:glow 3.2s ease-in-out infinite}
+.band img{transform-origin:center bottom;animation:eqp 3.4s ease-in-out infinite}
+.sec-wave{animation:wavep 3s ease-in-out infinite}
+header .lb,.sh .lb{transform-box:fill-box;transform-origin:center;animation:bar 1.6s ease-in-out infinite}
+header .lb:nth-child(2n),.sh .lb:nth-child(2n){animation-delay:.25s}
+header .lb:nth-child(3n),.sh .lb:nth-child(3n){animation-delay:.5s}
+header .lb:nth-child(5n),.sh .lb:nth-child(5n){animation-delay:.8s}
+.benefits li img{transition:transform .3s}.benefits li:hover img{transform:scale(1.12) rotate(-4deg)}
+.stems-show>*{transition:transform .3s,box-shadow .3s}.stems-show>*:hover{transform:translateY(-6px)}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
