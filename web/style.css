@@ -495,3 +495,23 @@ header .lb:nth-child(5n),.sh .lb:nth-child(5n){animation-delay:.8s}
 }
 .gbadge.sm{width:190px;flex:none}
 @media (max-width:600px){.gbadge.sm{display:block;margin:0 auto}}
+
+/* ---- compact wide promo ---- */
+.sec.alt[aria-labelledby="app-h"]{padding-top:28px;padding-bottom:28px}
+.promo{grid-template-columns:1.25fr 1fr;gap:4px 20px;padding:20px 28px}
+.promo .tag{font-size:10px;padding:4px 9px}
+.promo h2{font-size:clamp(20px,2.3vw,26px);margin:8px 0 6px}
+.promo p{font-size:13.5px;line-height:1.5;margin:0}
+.promo .ticks{gap:6px;margin:12px 0 14px;font-size:13.5px}
+.promo .ticks li{padding:6px 10px 6px 36px;border-radius:10px}
+.promo .ticks li::before{left:10px;width:17px;height:17px;margin-top:-8.5px;font-size:10px}
+.gbadge{width:176px}
+.promo-visual{min-height:0}
+.promo-visual .phones{width:125%;margin:-34px -12.5% -34px}
+@media (max-width:760px){
+  .promo{grid-template-columns:1fr;padding:16px 14px;gap:8px}
+  .promo-visual .phones{width:100%;margin:-16px 0 -20px}
+  .promo h2{font-size:21px}
+  .promo p{font-size:13.5px}
+  .gbadge{width:min(190px,100%);margin:0}
+}
