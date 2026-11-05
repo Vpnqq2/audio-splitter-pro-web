@@ -92,7 +92,7 @@ PATCH = {
 
 # ------------------------------------------------------------------ shared pieces
 bars = [(3,8),(8,14),(13,22),(18,32),(23,20),(28,26),(33,14),(38,8)]
-LOGO = '<svg viewBox="0 0 44 36" width="34" height="28" aria-hidden="true" focusable="false"><defs><linearGradient id="lg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7dffd0"/><stop offset="1" stop-color="#00c78a"/></linearGradient></defs>' + "".join(f'<rect x="{x}" y="{18 - h / 2}" width="3.4" height="{h}" rx="1.7" fill="url(#lg)"/>' for x, h in bars) + '</svg>'
+LOGO = '<svg viewBox="0 0 44 36" width="34" height="28" aria-hidden="true" focusable="false"><defs><linearGradient id="lg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7dffd0"/><stop offset="1" stop-color="#00c78a"/></linearGradient></defs>' + "".join(f'<rect class="lb" x="{x}" y="{18 - h / 2}" width="3.4" height="{h}" rx="1.7" fill="url(#lg)"/>' for x, h in bars) + '</svg>'
 def header(active=""):
     def a(href, label, key):
         cur = ' aria-current="page"' if key == active else ""
@@ -139,7 +139,7 @@ def breadcrumb(items):
 
 ORG = {"@type": "Organization", "@id": BASE + "/#org", "name": BRAND, "url": BASE + "/", "logo": {"@type": "ImageObject", "url": BASE + "/icon-512.png", "width": 512, "height": 512}, "email": EMAIL}
 
-def tail(): return '<script src="ads-config.js" defer></script><script src="site.js" defer></script>'
+def tail(): return '<script src="ads-config.js" defer></script><script src="site.js" defer></script><script src="motion.js" defer></script>'
 
 def write(fn, s): open(os.path.join(OUT, fn), "w", encoding="utf-8").write(s)
 
@@ -478,7 +478,7 @@ home = head(HOME_TITLE, HOME_DESC, "/", extra='<script src="coi-serviceworker.js
   {faq_html}
 </div></section>
 </main>{footer()}
-{ld(*home_ld)}<script src="app.js" defer></script><script src="site.js" defer></script>
+{ld(*home_ld)}<script src="app.js" defer></script><script src="site.js" defer></script><script src="motion.js" defer></script>
 <dialog id="exp" aria-labelledby="exp-h">
   <h3 id="exp-h">Export</h3>
   <div class="label">WHAT TO EXPORT</div>
