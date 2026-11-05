@@ -2,5 +2,5 @@
 #
 # When your Android app is ready for AdMob, replace this comment block with the exact line
 # AdMob shows you (AdMob > Apps > app-ads.txt), which looks like:
-#   google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+#   google.com, pub-2432276637240864, DIRECT, f08c47fec0942fa0
 # Do not publish a made-up publisher ID.
