@@ -151,7 +151,7 @@ def info_page(fn, title, desc, body, active="", crumbs=None, og_type="website", 
     write(fn, page)
 
 CTA = f'''<aside class="cta"><div><b>Try the free AI stem splitter</b><p>Split a song into vocals, drums, bass and other instruments, directly in your browser.</p></div><a class="btn primary" href="./#tool">Start Splitting</a></aside>
-<aside class="cta app"><div><b>Prefer your phone?</b><p>The Audio Splitter Pro Android app adds MP3 export, voice recording over the music and a library of your songs.</p></div><a class="gplay" href="{PLAY}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="#00C78A" d="M4 2.6v18.8c0 .5.5.8.9.5l15.3-9.4c.4-.2.4-.8 0-1L4.9 2.1c-.4-.3-.9 0-.9.5z"/></svg><span><small>GET IT ON</small><b>Google Play</b></span></a></aside>'''
+<aside class="cta app"><div><b>Prefer your phone?</b><p>The Audio Splitter Pro Android app adds MP3 export, voice recording over the music and a library of your songs.</p></div><a class="gbadge sm" href="{PLAY}" target="_blank" rel="noopener" aria-label="Get Audio Splitter Pro on Google Play"><img src="img/badge-android.webp" alt="Available on Android - Google Play" width="720" height="240" loading="lazy" decoding="async"><span class="shine" aria-hidden="true"></span></a></aside>'''
 
 # ------------------------------------------------------------------ guides
 def words(s): return len(re.sub(r"<[^>]+>", " ", s).split())
@@ -464,12 +464,15 @@ home = head(HOME_TITLE, HOME_DESC, "/", extra='<script src="coi-serviceworker.js
 </div></section>
 
 <section class="sec alt" aria-labelledby="app-h"><div class="wrap narrow">
-  <div class="promo"><div class="promo-glow" aria-hidden="true"></div>
-    <span class="tag">ANDROID APP</span>
-    <h2 id="app-h">Take it everywhere with the app</h2>
-    <p>Audio Splitter Pro is our Android app. It runs the AI on your phone, works without internet once installed and adds more features.</p>
-    <ul class="ticks"><li>Export as <b>MP3</b>, M4A or WAV</li><li><b>Record your voice</b> over the music, then export</li><li>Your own <b>library</b> of split songs</li></ul>
-    <a class="gplay" href="{PLAY}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="#00C78A" d="M4 2.6v18.8c0 .5.5.8.9.5l15.3-9.4c.4-.2.4-.8 0-1L4.9 2.1c-.4-.3-.9 0-.9.5z"/></svg><span><small>GET IT ON</small><b>Google Play</b></span></a>
+  <div class="promo"><div class="promo-glow" aria-hidden="true"></div><div class="promo-glow g2" aria-hidden="true"></div>
+    <div class="promo-copy">
+      <span class="tag"><i aria-hidden="true"></i>ANDROID APP</span>
+      <h2 id="app-h">Take it everywhere with <span class="grad">the app</span></h2>
+      <p>Audio Splitter Pro is our Android app. It runs the AI right on your phone, works without internet once installed, and adds even more features.</p>
+      <ul class="ticks"><li>Export as <b>MP3</b>, M4A or WAV</li><li><b>Record your voice</b> over the music, then export</li><li>Your own <b>library</b> of split songs</li></ul>
+      <a class="gbadge" href="{PLAY}" target="_blank" rel="noopener" aria-label="Get Audio Splitter Pro on Google Play"><img src="img/badge-android.webp" alt="Available on Android - Google Play" width="720" height="240" loading="lazy" decoding="async"><span class="shine" aria-hidden="true"></span></a>
+    </div>
+    <div class="promo-visual" aria-hidden="false"><div class="ring r1" aria-hidden="true"></div><div class="ring r2" aria-hidden="true"></div><img class="phones" src="img/app-phones.webp" alt="Audio Splitter Pro app: the mixer with vocals, drums, bass and your voice, and the export screen" width="1200" height="800" loading="lazy" decoding="async"><i class="note n1" aria-hidden="true">&#9835;</i><i class="note n2" aria-hidden="true">&#9834;</i><i class="note n3" aria-hidden="true">&#9833;</i></div>
   </div>
 </div></section>
 
