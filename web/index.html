@@ -81,13 +81,32 @@
     </div>
     <div class="tiles" id="tiles"></div>
     <p class="muted small" id="pick-note">Only the tracks you choose are created. The AI always works on the whole song.</p>
-    <details class="adv">
-      <summary>Options</summary>
-      <label class="row">Quality
-        <select id="quality"><option value="4">High (slowest)</option><option value="10" selected>Balanced</option><option value="32">Fast</option></select>
+    <details class="adv" id="perf-settings">
+      <summary><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" style="vertical-align:text-bottom;margin-right:4px;"><path fill="currentColor" d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg>Speed &amp; Performance Settings</summary>
+      <div class="engine-badge" id="engine-badge"></div>
+      <label class="row">Speed &amp; Quality
+        <select id="quality">
+          <option value="64">⚡ Ultra Fast (Fastest)</option>
+          <option value="32" selected>⚡ Fast (Recommended)</option>
+          <option value="10">⚖️ Balanced (Standard)</option>
+          <option value="4">💎 High Quality (Slowest)</option>
+        </select>
       </label>
-      <label class="row" id="gpu-row" hidden>Use the graphics card (experimental)
-        <input type="checkbox" id="gpu">
+      <label class="row">Acceleration Engine
+        <select id="accel-engine">
+          <option value="auto" selected>🚀 Auto (WebGPU if supported, or CPU)</option>
+          <option value="gpu">⚡ WebGPU (GPU - 5x to 10x Faster)</option>
+          <option value="cpu">💻 CPU (WebAssembly Multi-core)</option>
+        </select>
+      </label>
+      <label class="row">CPU Threads
+        <select id="cpu-threads">
+          <option value="auto" selected>Auto (All detected cores)</option>
+          <option value="8">8 Threads (Max Performance)</option>
+          <option value="4">4 Threads (Balanced)</option>
+          <option value="2">2 Threads (Battery saver)</option>
+          <option value="1">1 Thread (Safe / Low Memory)</option>
+        </select>
       </label>
     </details>
     <p class="warn" id="pick-warn" hidden></p>

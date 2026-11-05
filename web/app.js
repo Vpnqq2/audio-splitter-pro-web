@@ -57,8 +57,61 @@ const baseName = () => (S.name || "song").replace(/\.[^.]+$/, "").replace(/[^\p{
     if (f) loadFile(f);
   });
   if (!window.makeWorker && !window.crossOriginIsolated && window.isSecureContext && "serviceWorker" in navigator) $("#iso-note").hidden = false;
-  if (navigator.gpu || window.makeWorker) $("#gpu-row").hidden = false;   // window.makeWorker = the Windows app (native engine)
+    initSettings();
 })();
+
+function initSettings() {
+  try {
+    const saved = JSON.parse(localStorage.getItem("splitter_perf_settings") || "{}");
+    if (saved.quality && $("#quality")) $("#quality").value = saved.quality;
+    if (saved.engine && $("#accel-engine")) $("#accel-engine").value = saved.engine;
+    if (saved.threads && $("#cpu-threads")) $("#cpu-threads").value = saved.threads;
+  } catch (_) {}
+  updateEngineBadge();
+  ["quality", "accel-engine", "cpu-threads"].forEach((id) => {
+    const el = $("#" + id);
+    if (el) {
+      el.addEventListener("change", () => {
+        try {
+          const settings = {
+            quality: $("#quality") ? $("#quality").value : "32",
+            engine: $("#accel-engine") ? $("#accel-engine").value : "auto",
+            threads: $("#cpu-threads") ? $("#cpu-threads").value : "auto"
+          };
+          localStorage.setItem("splitter_perf_settings", JSON.stringify(settings));
+        } catch (_) {}
+        updateEngineBadge();
+      });
+    }
+  });
+}
+
+function updateEngineBadge() {
+  const badge = $("#engine-badge");
+  if (!badge) return;
+  const cores = navigator.hardwareConcurrency || 4;
+  const hasGpu = !!navigator.gpu || !!window.makeWorker;
+  const choice = $("#accel-engine") ? $("#accel-engine").value : "auto";
+
+  if (choice === "gpu" || (choice === "auto" && hasGpu)) {
+    if (hasGpu) {
+      badge.style.borderColor = "rgba(0,230,150,.4)";
+      badge.style.color = "#7dffd0";
+      badge.style.background = "rgba(0,199,138,.12)";
+      badge.innerHTML = "⚡ <b>GPU Acceleration:</b> WebGPU is active (up to 10x faster).";
+    } else {
+      badge.style.borderColor = "rgba(255,210,63,.4)";
+      badge.style.color = "var(--warn)";
+      badge.style.background = "rgba(255,210,63,.1)";
+      badge.innerHTML = "⚠️ <b>WebGPU not detected:</b> Will automatically fallback to multi-core CPU.";
+    }
+  } else {
+    badge.style.borderColor = "rgba(43,181,255,.4)";
+    badge.style.color = "#7dd3fc";
+    badge.style.background = "rgba(43,181,255,.1)";
+    badge.innerHTML = "💻 <b>CPU Mode:</b> Using WebAssembly on " + cores + " detected CPU cores.";
+  }
+}
 
 // ---------------------------------------------------------------- loading a file
 async function loadFile(file) {
@@ -127,16 +180,41 @@ function startSplit(level) {
   const safe = level > 0;
   if (!S.left) return;
   const stems = CH.filter((_, i) => S.picks[i]).map((c) => c.stem);
-  const div = Number($("#quality").value);
-  const gpu = !$("#gpu-row").hidden && $("#gpu").checked;
-  const threads = window.crossOriginIsolated ? Math.min(level === 0 ? 4 : level === 1 ? 2 : 1, navigator.hardwareConcurrency || 4) : 1;
+  const div = Number($("#quality") ? $("#quality").value : 32) || 32;
+
+  // Custom acceleration engine
+  const engineVal = $("#accel-engine") ? $("#accel-engine").value : "auto";
+  const hasGpu = !!navigator.gpu || !!window.makeWorker;
+  let gpu = false;
+  if (engineVal === "gpu") {
+    gpu = true;
+  } else if (engineVal === "cpu") {
+    gpu = false;
+  } else {
+    // "auto" mode: use GPU if supported and not retrying in safe mode
+    gpu = hasGpu && !safe;
+  }
+
+  // Custom CPU Threads selection (up to 8 threads or device cores)
+  const maxCores = navigator.hardwareConcurrency || 4;
+  const userThreadChoice = $("#cpu-threads") ? $("#cpu-threads").value : "auto";
+  let targetThreads = Math.min(8, maxCores);
+  if (userThreadChoice !== "auto") {
+    targetThreads = Math.min(parseInt(userThreadChoice, 10) || 4, maxCores);
+  }
+
+  const threads = window.crossOriginIsolated
+    ? Math.min(level === 0 ? targetThreads : level === 1 ? 2 : 1, maxCores)
+    : 1;
+
   show("proc"); setRing(0);
-  $("#proc-title").textContent = safe ? "Trying a lighter mode (" + level + "/2)..." : "Preparing..."; $("#proc-status").textContent = "Starting..."; $("#proc-eta").textContent = "";
+  $("#proc-title").textContent = safe ? "Trying a lighter mode (" + level + "/2)..." : "Preparing...";
+  $("#proc-status").textContent = "Starting..."; $("#proc-eta").textContent = "";
   $("#dl-wrap").hidden = true;
   stopWorker();
   const left = S.left.slice(), right = S.right.slice();   // copies go to the worker; the originals stay for a retry
   const picks = S.picks.slice();
-  const w = window.makeWorker ? window.makeWorker() : new Worker("worker.js"); S.worker = w;   // the Windows app supplies its own engine
+  const w = window.makeWorker ? window.makeWorker() : new Worker("worker.js"); S.worker = w;
   w.onerror = (e) => { if (level < 2) { stopWorker(); startSplit(level + 1); } else fail("The AI engine could not start: " + (e.message || "unknown error")); };
   w.onmessage = (e) => {
     const m = e.data;
@@ -146,8 +224,10 @@ function startSplit(level) {
       $("#proc-title").textContent = "Downloading the AI engine";
     } else if (m.type === "ready") {
       $("#dl-wrap").hidden = true;
-      $("#proc-title").textContent = "Processing your audio..."; $("#proc-status").textContent = m.gpu ? "Using the graphics card"
-        : "Separating the tracks (" + m.threads + (m.threads === 1 ? " thread" : " threads") + (m.isolated ? "" : ", reload the page once to use more") + (m.safe ? ", light mode" : "") + ")";
+      $("#proc-title").textContent = "Processing your audio...";
+      $("#proc-status").textContent = m.gpu
+        ? "⚡ GPU Accelerated (WebGPU — High Speed)"
+        : "💻 CPU Processing (" + m.threads + (m.threads === 1 ? " thread" : " threads") + (m.isolated ? "" : ", reload page for full multi-threading") + (m.safe ? ", light mode" : "") + ")";
       keepAwake();
       setRing(0);
       w.postMessage({ type: "run", left, right, stems, div }, [left.buffer, right.buffer]);
@@ -157,7 +237,7 @@ function startSplit(level) {
     } else if (m.type === "done") {
       stopWorker(); S.left = S.right = null; buildMixer(m.stems, picks);
     } else if (m.type === "error") {
-      if (m.retry && level < 2) { stopWorker(); startSplit(level + 1); return; }   // out of memory etc.: try the light mode once
+      if (m.retry && level < 2) { stopWorker(); startSplit(level + 1); return; }
       fail(m.retry ? "Your browser ran out of memory for the AI engine (" + m.message + "). Try a computer, Chrome, or a shorter song." : m.message);
     }
   };
