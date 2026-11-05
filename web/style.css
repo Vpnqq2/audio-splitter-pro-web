@@ -452,3 +452,46 @@ header .lb:nth-child(5n),.sh .lb:nth-child(5n){animation-delay:.8s}
 .benefits li img{transition:transform .3s}.benefits li:hover img{transform:scale(1.12) rotate(-4deg)}
 .stems-show>*{transition:transform .3s,box-shadow .3s}.stems-show>*:hover{transform:translateY(-6px)}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+
+/* ---- Android app promo ---- */
+.promo{display:grid;grid-template-columns:1.05fr 1fr;align-items:center;gap:8px 28px;padding:36px 34px;border-color:rgba(0,230,150,.28);box-shadow:0 0 0 1px rgba(0,230,150,.05),0 24px 70px -30px rgba(0,230,150,.35)}
+.promo-glow{animation:glow-pulse 5s ease-in-out infinite}
+.promo-glow.g2{left:-80px;right:auto;top:auto;bottom:-90px;width:260px;height:260px;animation-delay:-2.5s;opacity:.7}
+@keyframes glow-pulse{0%,100%{transform:scale(1);opacity:.8}50%{transform:scale(1.25);opacity:1}}
+.promo .tag{display:inline-flex;align-items:center;gap:7px}
+.promo .tag i{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(0,230,150,.6);animation:ping 1.8s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 8px rgba(0,230,150,0)}100%{box-shadow:0 0 0 0 rgba(0,230,150,0)}}
+.promo h2{font-size:clamp(26px,3.4vw,36px);line-height:1.12;letter-spacing:-.02em}
+.promo h2 .grad{background:linear-gradient(90deg,#7dffd0,#00c78a,#7dffd0);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:grad-slide 4s linear infinite}
+@keyframes grad-slide{to{background-position:-200% 0}}
+.promo p{font-size:15.5px;line-height:1.6}
+.promo .ticks{gap:10px;margin:18px 0 24px}
+.promo .ticks li{padding:9px 12px 9px 42px;border-radius:12px;background:rgba(0,199,138,.07);border:1px solid rgba(0,230,150,.14);transition:transform .2s,border-color .2s,background .2s}
+.promo .ticks li::before{left:12px;top:50%;margin-top:-10px;width:20px;height:20px;box-shadow:0 0 12px rgba(0,230,150,.5)}
+.promo .ticks li:hover{transform:translateX(4px);border-color:rgba(0,230,150,.4);background:rgba(0,199,138,.12)}
+.gbadge{position:relative;display:inline-block;width:260px;max-width:100%;overflow:hidden;border-radius:999px;line-height:0;transition:transform .2s,filter .2s;animation:badge-float 3.2s ease-in-out infinite}
+.gbadge img{width:100%;height:auto;display:block}
+.gbadge:hover{transform:scale(1.05);filter:drop-shadow(0 0 16px rgba(0,255,150,.55));animation-play-state:paused}
+.gbadge:active{transform:scale(.97)}
+.gbadge .shine{position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-18deg);animation:shine 3.8s ease-in-out infinite}
+@keyframes shine{0%,55%{left:-60%}100%{left:130%}}
+@keyframes badge-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.promo-visual{position:relative;display:grid;place-items:center;min-height:240px}
+.promo-visual .phones{position:relative;z-index:1;width:132%;max-width:none;height:auto;margin:-24px -16% -24px;border-radius:22px;-webkit-mask-image:radial-gradient(closest-side,#000 58%,transparent 100%);mask-image:radial-gradient(closest-side,#000 58%,transparent 100%);animation:phones-float 6s ease-in-out infinite;filter:drop-shadow(0 18px 34px rgba(0,200,140,.28))}
+@keyframes phones-float{0%,100%{transform:translateY(0) rotate(-.6deg) scale(1)}50%{transform:translateY(-12px) rotate(.8deg) scale(1.025)}}
+.promo-visual .ring{position:absolute;left:50%;top:50%;width:62%;aspect-ratio:1;margin:-31% 0 0 -31%;border-radius:50%;border:1px solid rgba(0,230,150,.35);animation:ring 4.2s ease-out infinite}
+.promo-visual .ring.r2{animation-delay:-2.1s}
+@keyframes ring{0%{transform:scale(.7);opacity:.7}100%{transform:scale(1.5);opacity:0}}
+.promo-visual .note{position:absolute;z-index:2;font-style:normal;color:#27f0b2;text-shadow:0 0 12px rgba(0,230,150,.8);opacity:0;animation:note-rise 5s ease-in infinite}
+.promo-visual .n1{left:6%;bottom:20%;font-size:26px}
+.promo-visual .n2{right:4%;bottom:30%;font-size:22px;animation-delay:-1.7s}
+.promo-visual .n3{left:42%;bottom:6%;font-size:18px;animation-delay:-3.3s}
+@keyframes note-rise{0%{transform:translateY(0) rotate(-8deg);opacity:0}15%{opacity:.9}100%{transform:translateY(-130px) rotate(14deg);opacity:0}}
+@media (max-width:760px){
+  .promo{grid-template-columns:1fr;padding:24px 16px;gap:18px}
+  .promo-visual{order:-1;min-height:0}
+  .promo-visual .phones{width:108%;margin:0 -4%}
+  .gbadge{display:block;width:min(300px,100%);margin:0 auto}
+}
+.gbadge.sm{width:190px;flex:none}
+@media (max-width:600px){.gbadge.sm{display:block;margin:0 auto}}
