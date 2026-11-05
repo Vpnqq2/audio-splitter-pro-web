@@ -46,6 +46,15 @@ img,svg{max-width:100%}
 .sh nav a:hover{color:#fff;background:rgba(255,255,255,.06)}
 .sh nav a[aria-current]{color:#031a10;font-weight:650;background:linear-gradient(180deg,#27f0b2,#00c78a);box-shadow:0 0 18px rgba(0,230,150,.35)}
 .sh .btn.sm svg{flex:none}
+/* App Button with Animation */
+.btn.app-btn{height:40px;padding:0 18px;font-size:14px;background:linear-gradient(135deg,#7C3AED,#A855F7);color:#fff;border:1px solid rgba(168,85,247,.5);position:relative;overflow:hidden;animation:pulse-glow 2s ease-in-out infinite}
+.btn.app-btn::before{content:"";position:absolute;inset:-2px;background:linear-gradient(135deg,#7C3AED,#A855F7,#EC4899);opacity:0;border-radius:999px;transition:opacity .3s;z-index:-1}
+.btn.app-btn:hover::before{opacity:1;animation:rotate-border 3s linear infinite}
+.btn.app-btn:hover{box-shadow:0 0 25px rgba(168,85,247,.6),0 0 50px rgba(168,85,247,.3);transform:translateY(-2px);border-color:rgba(236,72,153,.8)}
+.btn.app-btn svg{flex:none;animation:bounce-icon 1.5s ease-in-out infinite}
+@keyframes pulse-glow{0%,100%{box-shadow:0 0 15px rgba(168,85,247,.4)}50%{box-shadow:0 0 25px rgba(168,85,247,.6),0 0 35px rgba(168,85,247,.3)}}
+@keyframes bounce-icon{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+@keyframes rotate-border{0%{filter:hue-rotate(0deg)}100%{filter:hue-rotate(360deg)}}
 .burger{display:none;margin-left:auto;width:44px;height:44px;border:1px solid var(--line2);background:transparent;border-radius:12px;cursor:pointer;flex-direction:column;gap:5px;align-items:center;justify-content:center;padding:0}
 .burger i{display:block;width:20px;height:2px;background:var(--text);border-radius:2px;transition:transform .2s,opacity .2s}
 .burger[aria-expanded=true] i:nth-child(1){transform:translateY(7px) rotate(45deg)}
