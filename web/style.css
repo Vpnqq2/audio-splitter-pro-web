@@ -530,3 +530,12 @@ header .lb:nth-child(5n),.sh .lb:nth-child(5n){animation-delay:.8s}
   .vid-play svg{width:20px;height:20px}
 }
 @media (prefers-reduced-motion:reduce){.vid-play{transition:none}}
+
+/* tighter spacing between the stems section and How It Works */
+.sec-stems{padding-bottom:0}
+.sec-stems .stems-show{margin-bottom:-34px}
+.sec-how{padding-top:36px}
+@media (max-width:600px){
+  .sec-stems .stems-show{margin-bottom:-18px}
+  .sec-how{padding-top:18px}
+}
