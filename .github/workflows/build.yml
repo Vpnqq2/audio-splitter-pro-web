@@ -1,8 +1,12 @@
+
 name: Deploy web to GitHub Pages
+
 on:
   push:
     branches: [main]
-    paths: ["web/**", ".github/workflows/pages.yml"]
+    paths:
+      - "web/**"
+      - ".github/workflows/pages.yml"
   workflow_dispatch:
 
 permissions:
@@ -17,20 +21,36 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+
     steps:
-      - uses: actions/checkout@v4
-      - id: pages
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
+
       - name: Create ads.txt when an AdSense ID is configured
         run: |
           cd web
           PUB=$(grep -o 'pub-[0-9]\{10,\}' ads-config.js | head -1 || true)
-          if [ -n "$PUB" ]; then echo "google.com, $PUB, DIRECT, f08c47fec0942fa0" > ads.txt; echo "ads.txt created"; else echo "No AdSense ID yet"; fi
-      - uses: actions/upload-pages-artifact@v3
+
+          if [ -n "$PUB" ]; then
+            echo "google.com, $PUB, DIRECT, f08c47fec0942fa0" > ads.txt
+            echo "ads.txt created"
+          else
+            echo "No AdSense ID yet"
+          fi
+
+      - name: Upload website artifact
+        uses: actions/upload-pages-artifact@v3
         with:
           path: web
-      - id: deployment
+          retention-days: 1
+
+      - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
