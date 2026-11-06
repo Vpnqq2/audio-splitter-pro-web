@@ -440,11 +440,9 @@ home = head(HOME_TITLE, HOME_DESC, "/", extra='<script src="coi-serviceworker.js
 <section class="sec" id="how" aria-labelledby="how-h"><div class="wrap narrow">
   <h2 id="how-h">How It Works</h2>
   <p class="sec-sub">Three steps from a finished song to separate stems.</p>
-  <div class="vid" data-yt="DsNsKyK1SpU">
-    <a class="vid-btn" href="https://www.youtube.com/watch?v=DsNsKyK1SpU" target="_blank" rel="noopener" aria-label="Play video: How to use AudioSplitAI">
-      <img src="img/video-cover.webp" srcset="img/video-cover-sm.webp 640w, img/video-cover.webp 1280w" sizes="(max-width: 860px) 100vw, 820px" width="1280" height="720" alt="AudioSplitAI tutorial: how to split vocals and instruments in seconds" loading="lazy" decoding="async">
-      <span class="vid-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="30" height="30"><path fill="currentColor" d="M8 5v14l11-7z"/></svg></span>
-    </a>
+  <div class="vid">
+    <video id="how-video" preload="none" playsinline poster="img/video-cover.webp" aria-label="How to use AudioSplitAI"><source src="video/how-to-use.mp4" type="video/mp4"></video>
+    <button class="vid-btn" type="button" aria-label="Play video: How to use AudioSplitAI"><span class="vid-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26"><path fill="currentColor" d="M8 5v14l11-7z"/></svg></span></button>
   </div>
   <ol class="steps">{steps_html}</ol>
 </div></section>
