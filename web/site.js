@@ -38,26 +38,15 @@
   if (v === "yes") load(true); else if (v === "no") load(false); else banner();
 })();
 
-/* How it works video: the YouTube player is created only after the click (keeps the page fast and private). */
+/* How it works video: plays inside the page after the click on the cover image. */
 (function () {
-  var box = document.querySelector(".vid[data-yt]");
-  if (!box) return;
+  var box = document.querySelector(".vid"), v = document.getElementById("how-video");
+  if (!box || !v) return;
   var btn = box.querySelector(".vid-btn");
-  btn.addEventListener("click", function (e) {
-    var id = box.getAttribute("data-yt");
-    var isolated = window.crossOriginIsolated === true;
-    // The home page is cross-origin isolated for the AI engine; only browsers that support "credentialless" iframes can embed YouTube there.
-    // Everywhere else the link opens the video on YouTube.
-    if (isolated && !("credentialless" in HTMLIFrameElement.prototype)) return;
-    e.preventDefault();
-    var f = document.createElement("iframe");
-    if (isolated) f.setAttribute("credentialless", "");
-    f.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(id) + "?autoplay=1&rel=0&modestbranding=1&playsinline=1";
-    f.title = "How to use AudioSplitAI";
-    f.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen";
-    f.allowFullscreen = true;
-    f.referrerPolicy = "strict-origin-when-cross-origin";
-    box.replaceChild(f, btn);
-    f.focus();
+  btn.addEventListener("click", function () {
+    btn.hidden = true; box.classList.add("playing");
+    v.controls = true; v.preload = "auto";
+    var p = v.play(); if (p && p.catch) p.catch(function () {});
   });
+  v.addEventListener("ended", function () { box.classList.remove("playing"); v.controls = false; v.load(); btn.hidden = false; });
 })();
